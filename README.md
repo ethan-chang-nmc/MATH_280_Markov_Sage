@@ -3,8 +3,6 @@
 Ethan Chang
 echang28@u.rochester.edu
 
-To run code: Copy into https://sagecell.sagemath.org/
-
 Similar to the initial use of Markov matrices to analyze noun/vowel occurrence in Russian literature, this project aims to apply similar methods to analyze Chinese poetry. Specifically, tone patterns and rhyme differ between eras and authors, which provides a great way to use Markov matrices to classify works and differentiate between authors.
 
 This project aims to do just that. Using the Markov methods we learned in class, we will examine Lü shī, a type of verse in classical Chinese poetry with specific tonal rules. Usually, this involves an eight-line poem with either 5 or 7 characters in each line. There are flat tones and oblique tones, where the lines must follow a specific pattern of alternation between the two tones. This is similar to how English poems use stressed and unstressed tones to create a meter.
