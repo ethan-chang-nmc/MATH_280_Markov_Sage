@@ -1,5 +1,6 @@
-#Ethan Chang
-#echang28@u.rochester.edu
+# Ethan Chang
+# echang28@u.rochester.edu
+# created/tested using SageMath-10-4
 
 def extract_tones(file_path):
   '''
@@ -15,9 +16,10 @@ def extract_tones(file_path):
               tones.append(tone)
   return tone
 
-#files
+# Files
 df_tones = extract_tones('C:\Users\etcha\Downloads\MATH 280\zsz.txt')
 zsz_tones = extract_tones('C:\Users\etcha\Downloads\MATH 280\df.txt')
+test_tones = extract_tones('')
 
 
 def construct_markov_matrix(tones):
@@ -40,3 +42,10 @@ def construct_markov_matrix(tones):
           matrix[i] = [matrix[i][j] / row_sum for j in range(5)]
     
   return matrix
+
+# Construct the matrices
+df_mm = cosntruct_markov_matrix(df_tones)
+zsz_mm = construct_markov_matrix(zaz_tones)
+
+def mm_compare(mm)
+  
