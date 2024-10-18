@@ -4,7 +4,7 @@
 
 def extract_tones(file_path):
   '''
-  function to extract each tone within the files
+  Function to extract each tone within the files
   '''
   tones = []
   with open(file_path, 'r') as file:
@@ -22,9 +22,9 @@ zsz_tones = extract_tones('C:\Users\etcha\Downloads\MATH 280\df.txt')
 test_tones = extract_tones('')
 
 
-def construct_markov_matrix(tones):
+def construct_mm(tones):
   '''
-  function that constructs the Markov matrix for the 5 tones
+  Function that constructs the Markov matrix for the 5 tones
   '''
   # Initialize a 5x5 (for the five tones) matrix with zeros 
   matrix = Matrix(QQ, 5, 5, lambda i, j: 0)
@@ -44,8 +44,49 @@ def construct_markov_matrix(tones):
   return matrix
 
 # Construct the matrices
-df_mm = cosntruct_markov_matrix(df_tones)
-zsz_mm = construct_markov_matrix(zaz_tones)
+df_mm = construct_mm(df_tones)
+zsz_mm = construct_mm(zaz_tones)
+test_mm = construct_mm(test_tones)
 
-def mm_compare(mm)
-  
+def equil_vec(mm)
+  '''
+  Function that creates the equilibrium vector from the Markov matrix
+  '''
+  eigenvalues, eigenvectors = markov_matrix.eigenvectors_right()
+
+  # Find the eigenvector corresponding to eigenvalue 1
+  for i, eigenvalue in enumerate(eigenvalues):
+      if eigenvalue == 1:
+          steady_state = eigenvectors[i][0]
+          steady_state = steady_state / sum(steady_state)  # Ensure the sum is 1
+          return steady_state
+    
+  raise ValueError("No equilibrium vector found")
+
+# Find the equilibrium vectors for each matrix
+df_equil = equil_vec(df_mm)
+zsz_equil = equil_vec(zsz_mm)
+test_equil = equil_vec(test_mm)
+
+def euc_dist(vec1, vec2):
+    '''
+    Function to compute the Euclidean distance between two vectors
+    '''
+    return sqrt(sum((vec1[i] - vec2[i])^2 for i in range(len(vec1))))
+
+# Compute the distances between test set and training
+df_dist = euc_dist(df_equil, test_equil)
+zsz_dist = euc_dist(zsz_equil, test_equil)
+
+# Determine which author the test set is closer to
+if df_dist < zsz_dist:
+    predicted_author = "Tu Fu"
+else:
+    predicted_author = "Zhu Shuzhen"
+
+print(f"Equilibrium vector for df: {df_equil}")
+print(f"Equilibrium vector for zsz: {zsz_equil}")
+print(f"Equilibrium vector for the test set: {test_equil}")
+print(f"The predicted author based on equilibrium vectors is: {predicted_author}")
+
+
