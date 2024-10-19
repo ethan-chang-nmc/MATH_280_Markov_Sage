@@ -9,12 +9,16 @@ def extract_tones(file_path):
   tones = []
   with open(file_path, 'r') as file:
       for line in file:
-          syllables = line.strip().split(',')
+          syllables = line.strip().split()
           for syllable in syllables:
-              # Extract the tone
-              tone = int(syllable[-1])
-              tones.append(tone)
-  return tone
+              if syllable:
+                  try:
+                      # Extract the tone from the last character of the syllable
+                      tone = int(syllable[-1])
+                      tones.append(tone)
+                  except (IndexError, ValueError):
+                      print(f"Skipping invalid syllable: {syllable}")
+  return tones
 
 # Files
 df_tones = extract_tones('C:\Users\etcha\Downloads\MATH 280\zsz.txt')
