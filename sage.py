@@ -28,10 +28,10 @@ test_tones = extract_tones('/Users/ethanchang/Downloads/zsz-test.txt')
 
 def construct_mm(tones):
   '''
-  Function that constructs the Markov matrix for the 5 tones
+  Function that constructs the Markov matrix for the 4 tones
   '''
-  # Initialize a 5x5 (for the five tones) matrix with zeros 
-  matrix = Matrix(QQ, 5, 5, lambda i, j: 0)
+  # Initialize a 4x4 (for the five tones) matrix with zeros 
+  matrix = Matrix(QQ, 4, 4, lambda i, j: 0)
     
   # Count the transitions
   for i in range(len(tones) - 1):
@@ -40,10 +40,10 @@ def construct_mm(tones):
       matrix[current_tone, next_tone] += 1
     
   # Normalize the rows to convert to probabilities
-  for i in range(5):
+  for i in range(4):
       row_sum = sum(matrix[i])
       if row_sum > 0:
-          matrix[i] = [matrix[i][j] / row_sum for j in range(5)]
+          matrix[i] = [matrix[i][j] / row_sum for j in range(4)]
     
   return matrix
 
