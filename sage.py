@@ -31,7 +31,7 @@ def construct_mm(tones):
   Function that constructs the Markov matrix for the 5 tones
   '''
   # Initialize a 5x5 (for the five tones) matrix with zeros 
-  matrix = Matrix(RR, 5, 5, lambda i, j: 0)
+  matrix = Matrix(QQ, 5, 5, lambda i, j: 0)
     
   # Count the transitions
   for i in range(len(tones) - 1):
@@ -52,6 +52,14 @@ df_mm = construct_mm(df_tones)
 zsz_mm = construct_mm(zsz_tones)
 test_mm = construct_mm(test_tones)
 
+# Print the Markov matrices
+print("Markov Matrix for df:")
+print(df_mm)
+print("Markov Matrix for zsz:")
+print(zsz_mm)
+print("Markov Matrix for the test set:")
+print(test_mm)
+
 def equil_vec(mm):
     '''
     Function that creates the equilibrium vector from the Markov matrix
@@ -62,7 +70,8 @@ def equil_vec(mm):
     for eigenvalue, eigenvectors, _ in eigen_data:
         if eigenvalue == 1:
             steady_state = eigenvectors[0]  # Pick the first eigenvector corresponding to 1
-            steady_state = steady_state / sum(steady_state)  # Ensure the sum is 1
+            print(f"Raw Eigenvector before normalization: {steady_state}")  # Debugging line
+            steady_state = steady_state / sum(steady_state)  # Normalize to sum to 1
             return steady_state
 
     raise ValueError("No equilibrium vector found")
@@ -86,6 +95,8 @@ zsz_dist = euc_dist(zsz_equil, test_equil)
 # Determine which author the test set is closer to
 if df_dist < zsz_dist:
     predicted_author = "Tu Fu"
+elif df_dist == zsz_dist:
+    predicted_author = "Unable to differentiate"
 else:
     predicted_author = "Zhu Shuzhen"
 
