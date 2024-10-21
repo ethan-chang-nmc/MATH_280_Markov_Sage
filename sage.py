@@ -56,7 +56,7 @@ def equil_vec(mm):
   '''
   Function that creates the equilibrium vector from the Markov matrix
   '''
-  eigenvalues, eigenvectors = markov_matrix.eigenvectors_right()
+  eigenvalues, eigenvectors = mm.eigenvectors_right()
 
   # Find the eigenvector corresponding to eigenvalue 1
   for i, eigenvalue in enumerate(eigenvalues):
