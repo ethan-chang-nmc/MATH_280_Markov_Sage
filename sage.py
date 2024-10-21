@@ -49,10 +49,10 @@ def construct_mm(tones):
 
 # Construct the matrices
 df_mm = construct_mm(df_tones)
-zsz_mm = construct_mm(zaz_tones)
+zsz_mm = construct_mm(zsz_tones)
 test_mm = construct_mm(test_tones)
 
-def equil_vec(mm)
+def equil_vec(mm):
   '''
   Function that creates the equilibrium vector from the Markov matrix
   '''
@@ -92,5 +92,3 @@ print(f"Equilibrium vector for df: {df_equil}")
 print(f"Equilibrium vector for zsz: {zsz_equil}")
 print(f"Equilibrium vector for the test set: {test_equil}")
 print(f"The predicted author based on equilibrium vectors is: {predicted_author}")
-
-
