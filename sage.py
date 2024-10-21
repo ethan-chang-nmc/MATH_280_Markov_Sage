@@ -21,9 +21,9 @@ def extract_tones(file_path):
   return tones
 
 # Files
-df_tones = extract_tones('C:\Users\etcha\Downloads\MATH 280\zsz.txt')
-zsz_tones = extract_tones('C:\Users\etcha\Downloads\MATH 280\df.txt')
-test_tones = extract_tones('')
+df_tones = extract_tones('/Users/ethanchang/Downloads/df.txt')
+zsz_tones = extract_tones('/Users/ethanchang/Downloads/zsz.txt')
+test_tones = extract_tones('/Users/ethanchang/Downloads/zsz-test.txt')
 
 
 def construct_mm(tones):
