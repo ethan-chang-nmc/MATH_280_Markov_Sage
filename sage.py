@@ -53,19 +53,20 @@ zsz_mm = construct_mm(zsz_tones)
 test_mm = construct_mm(test_tones)
 
 def equil_vec(mm):
-  '''
-  Function that creates the equilibrium vector from the Markov matrix
-  '''
-  eigenvalues, eigenvectors = mm.eigenvectors_right()
+    '''
+    Function that creates the equilibrium vector from the Markov matrix
+    '''
+    eigen_data = mm.eigenvectors_right()
 
-  # Find the eigenvector corresponding to eigenvalue 1
-  for i, eigenvalue in enumerate(eigenvalues):
-      if eigenvalue == 1:
-          steady_state = eigenvectors[i][0]
-          steady_state = steady_state / sum(steady_state)  # Ensure the sum is 1
-          return steady_state
-    
-  raise ValueError("No equilibrium vector found")
+    # Find the eigenvector corresponding to eigenvalue 1
+    for eigenvalue, eigenvectors, _ in eigen_data:
+        if eigenvalue == 1:
+            steady_state = eigenvectors[0]  # Pick the first eigenvector corresponding to 1
+            steady_state = steady_state / sum(steady_state)  # Ensure the sum is 1
+            return steady_state
+
+    raise ValueError("No equilibrium vector found")
+
 
 # Find the equilibrium vectors for each matrix
 df_equil = equil_vec(df_mm)
