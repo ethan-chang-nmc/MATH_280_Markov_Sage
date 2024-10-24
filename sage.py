@@ -55,7 +55,12 @@ test_mm = construct_mm(test_tones)
 test2_mm = construct_mm(test_tones2)
 
 def equil_vec(transition_matrix, tol=1e-10, max_iter=100000):
-  steady_state = np.ones(4) / 4
+  '''
+  Function that identifies the equilibrium vector through continuous applications of Markov matrix
+  '''
+  # Initialize random 1 x 4 vector with 1/4 as starting values
+  steady_state = np.ones(4) / 4 
+  # Applies Markov matrix to the initialized vector for the number of iterations (or until it hits tolerance for change)
   for i in range(max_iter):
     new_steady_state = steady_state @ transition_matrix
     if np.allclose(new_steady_state, steady_state, atol=tol):
